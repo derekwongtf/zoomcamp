@@ -1,0 +1,31 @@
+Answer to Q2
+--iidfile string
+
+Answer to Q2
+pandas, sqlalchemy, psycopg2
+
+Answer to Q3
+select count(1) from green_taxi_trips a 
+where cast(lpep_pickup_datetime as date)= to_date('20190115','YYYYMMDD')
+;
+
+Answer to Q4
+select cast(lpep_pickup_datetime as date),max(trip_distance) from green_taxi_trips a 
+group by cast(lpep_pickup_datetime as date)
+order by 2 desc 
+;
+
+Answer to Q5
+select passenger_count,count(1) from green_taxi_trips a 
+where passenger_count between 2 and 3 
+and cast(lpep_pickup_datetime as date)
+= to_date('20190101','YYYYMMDD')
+group by passenger_count
+
+Answer to Q6
+select a."DOLocationID",c."Zone",max(tip_amount) from green_taxi_trips a 
+join zones b on a."PULocationID"=b."LocationID"
+join zones c on a."DOLocationID"=c."LocationID"
+where b."Zone"='Astoria'
+group by a."DOLocationID",c."Zone"
+order by 3 desc;
