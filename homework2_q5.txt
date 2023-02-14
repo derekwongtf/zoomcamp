@@ -1,0 +1,13 @@
+prefect profile create local
+prefect profile use 'local'
+PREFECT_API_URL="http://127.0.0.1:4200/api"
+prefect profile create prefect_cloud
+prefect profile use prefect_cloud
+prefect config PREFECT_API_KEY="pnu_tJSGLRTfv85WZkPJdc83SEOoGPo1tg3Ir0NH"
+*prefect config set PREFECT_API_URL='https://api.prefect.cloud/api/accounts/29acac0d-ca8a-4f00-a95a-e63acad6abec/workspaces/95820807-66b9-4e24-8288-72f7eaaee525'
+**prefect block register -m prefect_gcp
+prefect deployment build flows/04_homework/hw2_etl_web_to_gcs.py:etl_parent_flow -n dev -q dev -sb github/de-zoomcamp-hw2 -a
+prefect agent start -q 'dev'
+
+*note: the link is API_URL instead of web url
+**note: setup the GCP Bucket and GCP Credentials of Service Account(JSON key can be found from IAM->Service Accounts)
