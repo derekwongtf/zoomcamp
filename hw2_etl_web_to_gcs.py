@@ -69,4 +69,4 @@ def etl_parent_flow(
 
 
 if __name__ == "__main__":
-    etl_parent_flow()
+    etl_parent_flow(year, month, color)
