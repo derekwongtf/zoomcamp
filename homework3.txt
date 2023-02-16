@@ -14,3 +14,28 @@ select count(*) from `secret-node-376314.dezoomcamp.external_fhv_tripdata`
 
 Answer 2
 -> 0 MB for the External Table and 317.94MB for the BQ Table
+
+Answer 3
+->717,748
+SELECT count(*)  FROM `secret-node-376314.dezoomcamp.fhv_dataset_2019` where PUlocationID is null and DOlocationID is null
+
+Answer 4
+->Partition by pickup_datetime Cluster on affiliated_base_number
+
+Answer 5
+->647.87 MB for non-partitioned table and 23.06 MB for the partitioned table
+CREATE OR REPLACE TABLE `secret-node-376314.dezoomcamp.fhv_dataset_2019_partitioned_clustered`
+PARTITION BY DATE(pickup_datetime)
+CLUSTER BY Affiliated_base_number AS
+SELECT * FROM `secret-node-376314.dezoomcamp.fhv_dataset_2019`;
+
+SELECT count(distinct affiliated_base_number) FROM `secret-node-376314.dezoomcamp.fhv_dataset_2019` WHERE DATE(pickup_datetime) >= "2019-03-01" and  DATE(pickup_datetime) >= "2019-03-31"
+SELECT count(distinct affiliated_base_number) FROM `secret-node-376314.dezoomcamp.fhv_dataset_2019_partitioned_clustered` WHERE DATE(pickup_datetime) >= "2019-03-01" and  DATE(pickup_datetime) <= "2019-03-31";
+Answer 6
+-> GCP Bucket
+
+Answer 7
+-> False
+
+Answer 8
+->
