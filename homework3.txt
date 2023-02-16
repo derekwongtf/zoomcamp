@@ -1,0 +1,16 @@
+Answer 1
+-> 43,244,696
+
+In Ubuntu command line
+python hw3_etl_web_to_gcs.py
+
+In Google Cloud Bigquery
+CREATE OR REPLACE EXTERNAL TABLE `secret-node-376314.dezoomcamp.external_fhv_tripdata`
+OPTIONS (
+  format = 'parquet',
+  uris = ['gs://prefect-zoomcamp-2023/data/fhv/fhv_tripdata_2019-*.parquet']
+);
+select count(*) from `secret-node-376314.dezoomcamp.external_fhv_tripdata`
+
+Answer 2
+-> 0 MB for the External Table and 317.94MB for the BQ Table
